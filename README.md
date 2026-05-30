@@ -1,99 +1,129 @@
 # 🎓 College Discovery Platform
 
-A web app to explore, compare, and bookmark colleges across India.
+A modern web app to explore, compare, and bookmark colleges across India. Built with Next.js, Prisma, and PostgreSQL.
 
-🔗 **Live**: [college-discovery-bsve.onrender.com](https://college-discovery-bsve.onrender.com)
+🔗 **Live Demo:** [college-discovery-bsve.onrender.com](https://college-discovery-bsve.onrender.com)
 
 ---
 
-## Features
+## ✨ Features
 
-- 🔍 **Search & Filter** — Find colleges by name, state, type, fees, and rating
-- 📊 **Compare** — Side-by-side comparison of multiple colleges
-- 🔖 **Bookmarks** — Save colleges to your dashboard
-- ⭐ **Reviews & Ratings** — Read reviews for each college
-- 🔐 **Google Login** — Sign in with your Google account
-- 📱 **Responsive** — Works on desktop and mobile
+- **Browse Colleges** — Explore a catalog of colleges with ratings, fees, and placement stats
+- **Search & Filter** — Find colleges by name, city, or state. Filter by type, rating, and fees
+- **College Details** — View detailed info including courses, reviews, and placement data
+- **Compare Colleges** — Select multiple colleges and compare them side-by-side
+- **Bookmark & Save** — Save your favorite colleges and comparisons (requires login)
+- **Google Sign-In** — Secure authentication via Google OAuth
+- **Responsive Design** — Works on desktop, tablet, and mobile
 
-## Tech Stack
+---
+
+## 🛠️ Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| Framework | Next.js 16 (App Router) |
+| Framework | [Next.js 16](https://nextjs.org) (App Router) |
 | Language | TypeScript |
-| Styling | Tailwind CSS 4 |
-| Auth | Auth.js (NextAuth v5) + Google OAuth |
-| Database | PostgreSQL (Neon) |
-| ORM | Prisma |
-| Hosting | Render |
+| Database | PostgreSQL ([Neon](https://neon.tech)) |
+| ORM | [Prisma](https://prisma.io) |
+| Auth | [Auth.js v5](https://authjs.dev) + Google OAuth |
+| Styling | [Tailwind CSS v4](https://tailwindcss.com) |
+| Hosting | [Render](https://render.com) |
 
-## Getting Started
+---
 
-### 1. Clone & Install
+## 🚀 Getting Started
 
-```bash
-git clone https://github.com/Gnanendra-kumar/college-discovery.git
-cd college-discovery
-npm install
-```
+### Prerequisites
 
-### 2. Set Up Environment
+- Node.js 20+
+- A PostgreSQL database (e.g., [Neon](https://neon.tech))
+- Google OAuth credentials ([Cloud Console](https://console.cloud.google.com/apis/credentials))
 
-Copy the example file and fill in your values:
+### Setup
 
-```bash
-cp .env.example .env
-```
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/Gnanendra-kumar/college-discovery.git
+   cd college-discovery
+   ```
 
-| Variable | Description |
-|----------|-------------|
-| `DATABASE_URL` | Neon PostgreSQL connection string |
-| `AUTH_SECRET` | Auth.js secret (`npx auth secret` to generate) |
-| `GOOGLE_CLIENT_ID` | Google OAuth client ID |
-| `GOOGLE_CLIENT_SECRET` | Google OAuth client secret |
-| `NEXTAUTH_URL` | `http://localhost:3000` for local dev |
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### 3. Set Up Database
+3. **Configure environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   Open `.env` and fill in your values:
+   ```env
+   DATABASE_URL="your-postgresql-connection-string"
+   AUTH_SECRET="your-auth-secret"
+   GOOGLE_CLIENT_ID="your-google-client-id"
+   GOOGLE_CLIENT_SECRET="your-google-client-secret"
+   NEXTAUTH_URL="http://localhost:3000"
+   ```
 
-```bash
-npx prisma db push
-npx prisma db seed
-```
+4. **Push database schema & seed data**
+   ```bash
+   npx prisma db push
+   npm run db:seed
+   ```
 
-### 4. Run
+5. **Run the dev server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-```bash
-npm run dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000)
-
-## Deployment (Render)
-
-The app is configured for Render with [`render.yaml`](render.yaml).
-
-1. Push code to GitHub
-2. Create a **Web Service** on [render.com](https://render.com) and connect your repo
-3. Add environment variables in the Render dashboard
-4. Set `NEXTAUTH_URL` to your Render URL (e.g. `https://your-app.onrender.com`)
-5. Add `https://your-app.onrender.com/api/auth/callback/google` to Google OAuth redirect URIs
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 src/
-├── app/            # Pages & API routes
-│   ├── api/        # REST endpoints (bookmarks, colleges, comparisons)
-│   ├── colleges/   # College listing & detail pages
-│   ├── compare/    # Comparison page
-│   ├── dashboard/  # User dashboard (saved items)
-│   └── login/      # Login page
-├── components/     # Reusable UI components
-├── hooks/          # Custom React hooks
-├── lib/            # Auth, Prisma, providers
-└── types/          # TypeScript types
+├── app/                  # Pages & API routes (Next.js App Router)
+│   ├── api/              # REST API endpoints
+│   ├── colleges/         # Browse & detail pages
+│   ├── compare/          # Side-by-side comparison
+│   ├── dashboard/        # Saved bookmarks & comparisons
+│   └── login/            # Google sign-in page
+├── components/           # Reusable UI components
+├── hooks/                # Custom React hooks
+├── lib/                  # Auth, Prisma, and providers
+├── types/                # TypeScript type definitions
+└── utils/                # Helper/utility functions
 ```
 
-## License
+---
 
-MIT
+## 📜 Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run db:push` | Push Prisma schema to database |
+| `npm run db:seed` | Seed database with sample data |
+| `npm run db:studio` | Open Prisma Studio (database GUI) |
+
+---
+
+## 🌐 Deployment
+
+This app is deployed on **Render** using the included `render.yaml` blueprint.
+
+To deploy your own instance:
+1. Push to GitHub
+2. Create a **Web Service** on [Render](https://render.com) and connect your repo
+3. Set the environment variables in the Render dashboard
+4. Add your Render URL to Google OAuth redirect URIs
+
+---
+
+## 📄 License
+
+This project is for educational purposes.
