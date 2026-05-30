@@ -1,37 +1,33 @@
 # 🎓 College Discovery Platform
 
-A modern platform to explore, compare, and bookmark colleges across India. Built with Next.js, Prisma, and Neon PostgreSQL.
+A web app to explore, compare, and bookmark colleges across India.
 
 🔗 **Live**: [college-discovery-bsve.onrender.com](https://college-discovery-bsve.onrender.com)
 
 ---
 
-## ✨ Features
+## Features
 
-- **Browse Colleges** — Search, filter by type/state/fees, and sort results
-- **College Details** — View courses, placements, reviews, and ratings
-- **Compare Colleges** — Side-by-side comparison of up to 4 colleges
-- **Bookmarks** — Save your favorite colleges (requires login)
-- **Google Sign-In** — Secure authentication via Google OAuth
-- **Dashboard** — View saved bookmarks and comparisons
+- 🔍 **Search & Filter** — Find colleges by name, state, type, fees, and rating
+- 📊 **Compare** — Side-by-side comparison of multiple colleges
+- 🔖 **Bookmarks** — Save colleges to your dashboard
+- ⭐ **Reviews & Ratings** — Read reviews for each college
+- 🔐 **Google Login** — Sign in with your Google account
+- 📱 **Responsive** — Works on desktop and mobile
 
----
-
-## 🛠 Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
 | Framework | Next.js 16 (App Router) |
 | Language | TypeScript |
 | Styling | Tailwind CSS 4 |
-| Database | Neon PostgreSQL |
-| ORM | Prisma |
 | Auth | Auth.js (NextAuth v5) + Google OAuth |
+| Database | PostgreSQL (Neon) |
+| ORM | Prisma |
 | Hosting | Render |
 
----
-
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone & Install
 
@@ -43,7 +39,7 @@ npm install
 
 ### 2. Set Up Environment
 
-Copy `.env.example` to `.env` and fill in your values:
+Copy the example file and fill in your values:
 
 ```bash
 cp .env.example .env
@@ -60,8 +56,8 @@ cp .env.example .env
 ### 3. Set Up Database
 
 ```bash
-npx prisma db push    # Push schema to database
-npx prisma db seed    # Seed with sample colleges
+npx prisma db push
+npx prisma db seed
 ```
 
 ### 4. Run
@@ -72,43 +68,32 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000)
 
----
+## Deployment (Render)
 
-## 📁 Project Structure
+The app is configured for Render with [`render.yaml`](render.yaml).
+
+1. Push code to GitHub
+2. Create a **Web Service** on [render.com](https://render.com) and connect your repo
+3. Add environment variables in the Render dashboard
+4. Set `NEXTAUTH_URL` to your Render URL (e.g. `https://your-app.onrender.com`)
+5. Add `https://your-app.onrender.com/api/auth/callback/google` to Google OAuth redirect URIs
+
+## Project Structure
 
 ```
 src/
-├── app/
-│   ├── api/            # API routes (auth, colleges, bookmarks, comparisons)
-│   ├── colleges/       # Browse & detail pages
-│   ├── compare/        # Comparison page
-│   ├── dashboard/      # Saved bookmarks & comparisons
-│   └── login/          # Sign-in page
-├── components/         # Reusable UI components
-├── hooks/              # Custom React hooks (compare, bookmarks)
-├── lib/                # Auth config, Prisma client
-└── types/              # TypeScript types
+├── app/            # Pages & API routes
+│   ├── api/        # REST endpoints (bookmarks, colleges, comparisons)
+│   ├── colleges/   # College listing & detail pages
+│   ├── compare/    # Comparison page
+│   ├── dashboard/  # User dashboard (saved items)
+│   └── login/      # Login page
+├── components/     # Reusable UI components
+├── hooks/          # Custom React hooks
+├── lib/            # Auth, Prisma, providers
+└── types/          # TypeScript types
 ```
 
----
+## License
 
-## 🌐 Deployment (Render)
-
-1. Push code to GitHub
-2. Create a **Web Service** on [render.com](https://render.com) and connect the repo
-3. Set environment variables in the Render dashboard
-4. Set `NEXTAUTH_URL` to your Render URL (e.g. `https://college-discovery-bsve.onrender.com`)
-5. Add the Render URL to Google OAuth redirect URIs in [Google Cloud Console](https://console.cloud.google.com/apis/credentials)
-
----
-
-## 📜 Available Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run start` | Start production server |
-| `npm run db:push` | Push Prisma schema to database |
-| `npm run db:seed` | Seed database with sample data |
-| `npm run db:studio` | Open Prisma Studio |
+MIT
